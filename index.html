@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAP</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="border">
+  <div class="direction-icons">
+    <div class="button-up" onclick="drawForward()">
+      F
+    </div>
+    <div class="button-down" onclick="drawBackward()">
+      B
+    </div>
+    <div class="button-left" onclick="drawLeft()">
+      L
+    </div>
+    <div class="button-right" onclick="drawRight()">
+      R
+    </div>
+  </div>
+</div>
+<canvas id="drawingCanvas" width="400" height="400"></canvas>
+</body>
+</html>
+
+<script>
+  const canvas = document.getElementById('drawingCanvas');
+  const ctx = canvas.getContext('2d');
+  let x = canvas.width / 2;
+  let y = canvas.height / 2;
+
+  function drawLineTo(x2, y2) {
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+
+      // Calculate angle between the two points (in radians)
+      const angle = Math.atan2(y2 - y, x2 - x);
+
+      // Arrowhead size and length
+      const arrowSize = 5;
+      const arrowLength = 10;
+
+      // Calculate arrowhead points
+      const x3 = x2 - arrowLength * Math.cos(angle - Math.PI / 6);
+      const y3 = y2 - arrowLength * Math.sin(angle - Math.PI / 6);
+      const x4 = x2 - arrowLength * Math.cos(angle + Math.PI / 6);
+      const y4 = y2 - arrowLength * Math.sin(angle + Math.PI / 6);
+
+      // Draw arrowhead lines
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x3, y3);
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x4, y4);
+      ctx.stroke();
+
+      x = x2;
+      y = y2;
+  }
+
+  function drawForward() {
+      let newY = y - 50;
+      drawLineTo(x, newY);    
+      saveData('Forward');
+  }
+
+  function drawBackward() {
+      let newY = y + 50;
+      drawLineTo(x, newY);    
+      saveData('Backward');      
+  }
+
+  function drawLeft() {
+      let newX = x - 50;
+      drawLineTo(newX, y);  
+      saveData('L');
+  }
+
+  function drawRight() {
+      let newX = x + 50;
+      drawLineTo(newX, y);  
+      saveData('R');
+  }
+</script>
+
+
+
+
+<!-- ICONS ONLINE URL -->
+<!-- <img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-up-01-512.png" height="25" width="25">  -->
+<!-- <img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-down-01-512.png" height="25" width="25"> -->
+<!-- <img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-left-01-512.png" height="25" width="25"> -->
+<!-- <img src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-512.png" height="25" width="25"> -->

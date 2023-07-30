@@ -1,0 +1,119 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #dfe2e8;
+}
+
+.border{
+  width: 35%;
+  height: 35%;
+  border-radius: 11px;
+  display: flex;
+  position: relative;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 1px solid #000;
+}
+
+.direction-icons {
+  display: flex;
+  position: relative;
+  width: 105px;
+  height: 105px;
+  border: 0px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-up,
+.button-down,
+.button-left,
+.button-right {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  transition: all 0.2s linear;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-up {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button-down {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.button-left {
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  transform: translateY(-50%);
+}
+
+.button-right {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  transform: translateY(-50%);
+}
+
+.button-up::after,
+.button-down::after,
+.button-left::after,
+.button-right::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button-up::after {
+  top: 25%;
+}
+
+.button-down::after {
+  top: 75%;
+}
+
+.button-left::after {
+  left: 25%;
+}
+
+.button-right::after {
+  left: 75%;
+}
+
+/* Additional styles for images */
+.button-up img,
+.button-down img,
+.button-left img,
+.button-right img {
+  background-color: white;
+  border: 0.2 solid #555;
+  border-radius: 50%;
+  padding: 5px;
+}
